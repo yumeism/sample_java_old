@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="" />
+	<constant name="struts.action.excludePattern" value="/js/.*,/css/.*"/>
+	<constant name="struts.locale" value="ja_JP" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant value="[a-zA-Z0-9._!/\-]*" name="struts.allowed.action.names"/>
+
+	<package name="etudes" namespace="/" extends="struts-default">
+	
+	
+<!--  -->
+	
+		<global-results>
+			<result name="exception">/WEB-INF/jsp/error.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="java.lang.Exception" />
+		</global-exception-mappings>
+
+  
+    <!-- http://localhost:8080/Etudes/ -->
+	<!-- MENU -->
+		<action name="" class="etudes.Hello" method="showPage">
+			<result name="success">/WEB-INF/jsp/menu.jsp</result>
+		</action>
+		<action name="menu" class="etudes.Hello" method="showPage">
+			<result name="success">/WEB-INF/jsp/menu.jsp</result>
+		</action>
+		
+
+	<!-- ランドマークの検索 -->
+		<action name="search" class="etudes.Hello" method="showPage">
+			<result name="success">/WEB-INF/jsp/search.jsp</result>
+		</action>
+		<action name="srclm" class="etudes.Search" method="searchLandMark">
+			<result name="success">/WEB-INF/jsp/search.jsp</result>
+			<result name="error">/WEB-INF/jsp/search.jsp</result>
+		</action>		
+		
+	<!-- ランドマークの追加 -->
+		<action name="reglm" class="etudes.Hello" method="showPage">
+			<result name="success">/WEB-INF/jsp/reglm.jsp</result>
+		</action>
+		<action name="addlm" class="etudes.RegLandMark" method="regLandMark">
+			<result name="success">/WEB-INF/jsp/set.jsp</result>
+			<result name="error">/WEB-INF/jsp/reglm.jsp</result>
+		</action>
+	<!-- ランドマーク一覧 -->
+		<action name="showli" class="etudes.ShowList" method="showLandMarkList">
+			<result name="success">/WEB-INF/jsp/list.jsp</result>
+		</action>
+	<!-- 削除 -->
+		<action name="delete" class="etudes.Delete" method="delData">
+			<result name="success">/WEB-INF/jsp/del.jsp</result>
+		</action>
+		
+
+	<!-- ERROR(確認用) -->
+		<action name="error" class="etudes.Hello" method="showPage">
+			<result name="success">/WEB-INF/jsp/error.jsp</result>
+		</action>
+		
+    </package>
+</struts>
